@@ -1,7 +1,7 @@
-from django.conf.urls import include, url
-from .view import login, create
+from django.conf.urls import url
+from .views import create, login
 
-url_patterns = [
+urlpatterns = [
     url(r'^login/$', login, name='login'),
-    url(r'^signup/$', create, name='create'),
+    url(r'^singup/$', create, name='singup'),
 ]
