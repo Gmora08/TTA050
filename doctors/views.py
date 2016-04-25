@@ -24,20 +24,25 @@ def create(request):
         doctor_form = DoctorForm()
         return render(request, template_response, {'form': doctor_form, 'user_form': user_form})
 
-def login(request):
+def log_in(request):
     template_response = 'doctors/login.html'
     if request.method=='POST':
         form = AuthenticationForm(request.POST)
         username = request.POST['username']
         password = request.POST['password']
         user = authenticate(username=username, password=password)
-        if user:
+        if user is not None:
             login(request, user)
             #return to show pacients
             pass
         else:
+            print "Ya valio"
             messages.error(request, u'Usuario/Password incorrecto')
             return render(request, template_response, {'form': form})
     else:
         form = AuthenticationForm()
         return render(request, template_response, {'form': form})
+
+def log_out(request):
+    logout(request)
+    return redirect(reverse('login'))
