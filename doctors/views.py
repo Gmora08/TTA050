@@ -33,7 +33,7 @@ def log_in(request):
         user = authenticate(username=username, password=password)
         if user is not None:
             login(request, user)
-            #return to show pacients
+            return redirect(reverse('show_pacients'))
             pass
         else:
             print "Ya valio"
