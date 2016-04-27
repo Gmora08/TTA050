@@ -30,4 +30,4 @@ class Pacient(models.Model):
     state = models.CharField("Estado", max_length=50, blank=True, null=True)
 
     def __unicode__(self):
-        return self.name + ' ' + self.lastname
+        return self.name 

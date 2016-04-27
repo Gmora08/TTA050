@@ -1,0 +1,70 @@
+{% extends 'bases/base.html' %}
+{% load staticfiles %}
+{% load widget_tweaks %}
+
+{% block content %}
+<div style="padding: 0 11em;">
+<div class="page-header">
+  <h1>{{pacient.name}} <small>{{pacient.last_name}}</small></h1>
+  <div class="row">
+  <div class="col-md-4">
+  	  <address>
+  	<strong>Twitter, Inc.</strong><br>
+  		1355 Market Street, Suite 900<br>
+  		San Francisco, CA 94103<br>
+  		<abbr title="Phone">P:</abbr> (123) 456-7890
+	</address>
+  </div>
+  <div class="col-md-8" style="margin-top: -10px;">
+  		<adress>
+		<strong>Informacion personal</strong> <br>
+		<abbr title="">
+			{{pacient.date_of_birth}} <br>
+			{{pacient.email}}
+			<p style="font-size: 13px;">{{pacient.curp}}</p>
+			<p>Sexo: {{pacient.sex}}</p>
+		</abbr>
+	</adress>	
+  </div>
+  </div>
+  
+	<figure style="float: right;margin-top: -11em;">
+		<img src="{% static 'img/img.svg' %}" alt="" style="width: 75%;">
+	</figure>
+
+	<div class="row">
+			<h2>Analisis</h2>
+			<a style="    display: inline-block;
+    text-align: right;
+    margin-left: 74%;
+    margin-top: -5em;" href="#" class="btn btn-default">Hacer analisis</a>
+    	<div class="col-md-12">
+    	<table class="table table-hover">
+			<tr>
+				<th>Folio</th>
+				<th>Doctor</th>
+				<th>Genero</th>
+				<th>Tipo de sangre</th>
+				<th>Linfocitos</th>
+				<th>Basofilos</th>
+				<th>Fecha de analisis</th>
+				<th>Reporte</th>
+			</tr>
+			{% for report in reports %}
+			<tr>
+				<td>{{report.id}}</td>
+				<td>{{report.doctor.name}} {{report.doctor.last_name}}</td>
+				<td>{{pacient.sex}}</td>
+				<td>{{pacient.blood}}</td>
+				<td>{{report.linfocitos}}</td>
+				<td>{{report.basofilos}}</td>
+				<td>{{report.created_at}}</td>
+				<td><a href="">bajar</a></td>
+			</tr>
+			{% endfor %}
+		</table>
+		</div>
+	</div>
+</div>
+</div>
+{% endblock %}

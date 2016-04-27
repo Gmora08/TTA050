@@ -1,9 +1,33 @@
 {% extends 'bases/base.html' %}
 {% block content %}
     <h2>Pacientes</h2>
-    <ul>
-        {% for pacient in pacients %}
-            <li>{{ pacient.name }}</li>
-        {% endfor %}
-    </ul>
+    <div class="row">
+    	<div class="col-md-12">
+    	<table class="table table-hover">
+			<tr>
+				<th>Nombre</th>
+				<th>Fecha de nacimiento</th>
+				<th>Correo</th>
+				<th>Genero</th>
+				<th>Tipo de sangre</th>
+				<th>Analisis</th>
+				<th>Editar</th>
+				<th>Borrar</th>
+			</tr>
+			{% for pacient in pacients %}
+			<tr>
+				<td>{{pacient.name}}</td>
+				<td>{{pacient.date_of_birth}}</td>
+				<td>{{pacient.email}}</td>
+				<td>{{pacient.sex}}</td>
+				<td>{{pacient.blood}}</td>
+				<td><a class="glyphicon glyphicon-list-alt" href="{% url 'new_report' pacient.pk %}"></a></td>
+				<td><a class="glyphicon glyphicon-pencil" href="{% url 'update_pacient' pacient.pk %}"></a></td>
+				<td><a class="glyphicon glyphicon-remove-sign" href="{% url 'delete_pacient' pacient.pk %}"></a></td>
+			</tr>
+      {% endfor %}
+		</table>
+    	</div>
+    	<a class="btn btn-primary" href="{% url 'create_pacient' %}" role="button">Ingresar Paciente</a>
+    </div>
 {% endblock %}

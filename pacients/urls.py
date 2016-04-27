@@ -1,8 +1,10 @@
 from django.conf.urls import url
-from .views import PacientList, PacientCreate, PacientUpdate
+from .views import PacientList, PacientCreate, PacientUpdate, PacientDelete, PacientDetail
 
 urlpatterns = [
-    url(r'^$',  PacientList.as_view(),   name='show_pacients'),
-    url(r'^create/$',  PacientCreate.as_view(),   name='create_pacient'),
-    url(r'^update/(?P<pk>[0-9]+)/$', PacientUpdate.as_view(), name='update_pacient'),
+    url(r'^$',  PacientList.as_view(),   name='index_pacients'),
+    url(r'^new/$',  PacientCreate.as_view(),   name='create_pacient'),
+    url(r'^(?P<pk>[0-9]+)/update/$', PacientUpdate.as_view(), name='update_pacient'),
+    url(r'^(?P<pk>[0-9]+)/delete/$', PacientDelete.as_view(), name='delete_pacient'),
+    url(r'^(?P<pk>[0-9]+)/$', PacientDetail.as_view(), name='show_pacient')
 ]

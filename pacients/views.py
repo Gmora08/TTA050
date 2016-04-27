@@ -1,12 +1,18 @@
 from django.shortcuts import render
-from django.views.generic import ListView, CreateView, UpdateView
+from django.core.urlresolvers import reverse_lazy
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from doctors.models   import Doctor
 from pacients.models  import Pacient
 from pacients.forms import PacientForm
 
+
 class PacientList(ListView):
     model = Pacient
     context_object_name = 'pacients'
+
+class PacientDetail(DetailView):
+    model = Pacient
+    context_object_name = 'pacient'
 
 class PacientCreate(CreateView):
     model = Pacient
@@ -31,3 +37,7 @@ class PacientUpdate(UpdateView):
         context['title'] = 'Editar Paciente'
         context['button_name'] = 'Editar'
         return context
+
+class PacientDelete(DeleteView):
+    model = Pacient
+    success_url = reverse_lazy('show_pacients')

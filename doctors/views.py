@@ -17,6 +17,7 @@ def create(request):
             doctor = doctor_form.save(user)
             return redirect(reverse('login'))
         else:
+            print user_form.errors
             return render(request, template_response, {'form': doctor_form, 'user_form': user_form})
 
     else:
@@ -33,7 +34,7 @@ def log_in(request):
         user = authenticate(username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect(reverse('create_pacient'))
+            return redirect(reverse('index_pacients'))
             pass
         else:
             print "Ya valio"

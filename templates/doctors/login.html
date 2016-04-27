@@ -2,10 +2,11 @@
 {% load widget_tweaks %}
 
 {% block content %}
-<h2 style="text-align: center; margin:1.5em 0;">Login</h2>
-{% if form.errors %}
-	<p>{{form.errors}}</p>
-{% endif %}
+<div class="jumbotron" style="padding-bottom: 280px;">
+	<h2 style="text-align: center; margin:1.5em 0;">Login</h2>
+	{% if form.errors %}
+		<p>{{form.errors}}</p>
+	{% endif %}
 	<form action="{% url 'login' %}" method="post" class="col-md-6 col-md-offset-3">
 		{% csrf_token %}
 		<div class="form-group">
@@ -20,4 +21,5 @@
 	  <input class="btn btn-success" type="submit" value="Entrar">
 
 	</form>
+	</div>
 {% endblock %}
